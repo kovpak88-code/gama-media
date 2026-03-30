@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>GAMA · Структура 2026–27</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+:root{
+  --bg:#080808;--card:#111;--card2:#161616;--b:#222;--b2:#2e2e2e;
+  --text:#edeae4;--sub:#888;--dim:#444;
+  --red:#c8102e;--amber:#d48a10;--blue:#2878d4;
+  --teal:#1a9478;--pink:#c43070;--purple:#8050d4;--green:#2a9444;
+}
+html{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;-webkit-font-smoothing:antialiased}
+body{max-width:520px;margin:0 auto;padding:0 0 80px}
+
+header{padding:28px 20px 20px;border-bottom:1px solid var(--b)}
+header h1{font-family:'Bebas Neue',sans-serif;font-size:32px;letter-spacing:.1em;line-height:1}
+header p{font-size:12px;color:var(--sub);margin-top:4px;letter-spacing:.04em}
+.red{color:var(--red)}
+
+section{padding:28px 16px 0}
+.sec-label{font-size:10px;font-weight:700;letter-spacing:.2em;color:var(--dim);text-transform:uppercase;margin-bottom:12px;padding-left:4px}
+
+.card{background:var(--card);border:1px solid var(--b);border-radius:14px;padding:16px;margin-bottom:10px}
+.card:active{border-color:var(--b2)}
+.card-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+.card-title{font-size:16px;font-weight:600;line-height:1.25}
+.card-sub{font-size:12px;color:var(--sub);margin-top:3px;line-height:1.4}
+.badge{font-size:10px;font-weight:700;letter-spacing:.06em;padding:4px 10px;border-radius:20px;white-space:nowrap;flex-shrink:0}
+
+.a-red{border-color:#3d1020;background:#0c0507} .a-red .card-title{color:#e84060} .a-red .badge{background:#3d1020;color:#e84060}
+.a-amber{border-color:#2a1c04;background:#0c0a05} .a-amber .card-title{color:#e8a030} .a-amber .badge{background:#2a1c04;color:#e8a030}
+.a-blue{border-color:#0a1828;background:#060a10} .a-blue .card-title{color:#4a9ef8} .a-blue .badge{background:#0a1828;color:#4a9ef8}
+.a-teal{border-color:#081e18;background:#050e0b} .a-teal .card-title{color:#30c4a0} .a-teal .badge{background:#081e18;color:#30c4a0}
+.a-pink{border-color:#280d1a;background:#0c0508} .a-pink .card-title{color:#e050a0} .a-pink .badge{background:#280d1a;color:#e050a0}
+.a-purple{border-color:#160d2a;background:#08060e} .a-purple .card-title{color:#a070f0} .a-purple .badge{background:#160d2a;color:#a070f0}
+.a-green{border-color:#081408;background:#050c05} .a-green .card-title{color:#50c468} .a-green .badge{background:#081408;color:#50c468}
+
+.items{margin-top:12px;display:flex;flex-direction:column;gap:6px}
+.item{background:var(--card2);border:1px solid var(--b);border-radius:10px;padding:10px 14px;display:flex;align-items:flex-start;gap:10px}
+.item-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0;margin-top:5px}
+.item-text{font-size:13px;font-weight:500;line-height:1.25}
+.item-sub{font-size:11px;color:var(--sub);margin-top:2px;line-height:1.4}
+
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
+.mini{background:var(--card2);border:1px solid var(--b);border-radius:10px;padding:12px}
+.mini-title{font-size:13px;font-weight:600}
+.mini-sub{font-size:11px;color:var(--sub);margin-top:2px}
+
+.phases{margin-top:10px;display:flex;flex-direction:column;gap:6px}
+.phase{border-radius:10px;padding:12px 14px;border:1px solid transparent}
+.phase-num{font-size:10px;font-weight:700;letter-spacing:.1em;opacity:.7;margin-bottom:2px}
+.phase-title{font-size:14px;font-weight:600}
+.phase-sub{font-size:11px;opacity:.7;margin-top:2px}
+.ph1{background:#280d1a;border-color:#3c1228;color:#e050a0}
+.ph2{background:#1a1a1a;border-color:#2a2a2a;color:var(--text)}
+.ph3{background:#1e1e1e;border-color:#2e2e2e;color:var(--text)}
+
+/* TIMELINE */
+.tl-section-title{font-size:18px;font-weight:600;color:var(--text);margin-bottom:4px}
+.tl-section-sub{font-size:12px;color:var(--sub);margin-bottom:16px}
+.tl-item{margin-bottom:16px}
+.tl-name{font-size:11px;font-weight:700;color:var(--sub);margin-bottom:6px;letter-spacing:.06em;text-transform:uppercase}
+.tl-bars{display:flex;flex-direction:column;gap:4px}
+.tl-bar{border-radius:8px;padding:9px 14px;font-size:12px;font-weight:500;line-height:1.3}
+.tl-bar span{display:block;font-size:10px;opacity:.6;margin-top:2px}
+
+.team-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:4px}
+.member{background:var(--card2);border:1px solid var(--b);border-radius:10px;padding:12px}
+.member-name{font-size:14px;font-weight:600}
+.member-role{font-size:11px;color:var(--sub);margin-top:2px}
+
+.platform-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:4px}
+.platform{border-radius:10px;padding:12px 14px;border:1px solid var(--b);background:var(--card2);text-decoration:none;color:var(--text);display:block}
+.platform:active{opacity:.7}
+.platform-name{font-size:14px;font-weight:600}
+.platform-url{font-size:11px;color:var(--sub);margin-top:2px}
+
+.arrow-down{text-align:center;padding:6px 0;font-size:16px;color:var(--dim)}
+
+.note{background:#0e0b06;border:1px solid #2a1c04;border-radius:10px;padding:12px 14px;margin-top:8px}
+.note-text{font-size:12px;color:#c8900a;line-height:1.5}
+
+nav{position:fixed;bottom:0;left:0;right:0;background:rgba(8,8,8,.96);border-top:1px solid var(--b);display:flex;justify-content:space-around;padding:10px 0 18px;backdrop-filter:blur(12px);z-index:100}
+nav a{font-size:9px;font-weight:700;letter-spacing:.06em;color:var(--dim);text-decoration:none;text-align:center;display:flex;flex-direction:column;align-items:center;gap:4px;transition:color .15s;text-transform:uppercase}
+nav a:active{color:var(--red)}
+nav a svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>GAMA <span class="red">·</span> СТРУКТУРА</h1>
+  <p>МЕДИА · СТРАТЕГИЯ · ПРОДАКШН · 2026–27</p>
+</header>
+
+<!-- ═══ 1. НАПРАВЛЕНИЯ ═══ -->
+<section id="s-dir">
+  <div class="sec-label">Три направления</div>
+
+  <div class="card a-red">
+    <div class="card-head">
+      <div><div class="card-title">Кулачные бои</div><div class="card-sub">Bare Knuckle · флагман · самый популярный формат</div></div>
+      <div class="badge">BK</div>
+    </div>
+  </div>
+  <div class="card a-purple">
+    <div class="card-head">
+      <div><div class="card-title">MMA</div><div class="card-sub">Смешанные единоборства</div></div>
+      <div class="badge">MMA</div>
+    </div>
+  </div>
+  <div class="card a-teal">
+    <div class="card-head">
+      <div><div class="card-title">Грэпплинг</div><div class="card-sub">Командные и личные турниры</div></div>
+      <div class="badge">GR</div>
+    </div>
+  </div>
+  <div class="arrow-down">↓</div>
+</section>
+
+<!-- ═══ 2. СТРАТЕГИЯ ═══ -->
+<section id="s-strat">
+  <div class="sec-label">Стратегия</div>
+
+  <div class="card a-amber">
+    <div class="card-head">
+      <div><div class="card-title">Стратегия продвижения</div><div class="card-sub">позиционирование · цели · KPI · аудитория</div></div>
+    </div>
+    <div class="items">
+      <div class="item">
+        <div class="item-dot" style="background:#e8a030"></div>
+        <div>
+          <div class="item-text">Расширение аудитории</div>
+          <div class="item-sub">Сейчас — андеграунд-вайб, 21–35. Задача — тянуть 30–50+ для рекламных интеграций и роста посетителей. Каждый формат (BK / MMA / грэпплинг) говорит на своём языке с разной аудиторией</div>
+        </div>
+      </div>
+      <div class="item">
+        <div class="item-dot" style="background:#e8a030"></div>
+        <div>
+          <div class="item-text">Бойцы → Личности</div>
+          <div class="item-sub">Персональные истории и сюжетные арки. Зритель идёт на человека, а не на турнир</div>
+        </div>
+      </div>
+      <div class="item">
+        <div class="item-dot" style="background:#e8a030"></div>
+        <div>
+          <div class="item-text">Коллаборации с брендами</div>
+          <div class="item-sub">Не рекламные пакеты — интересные коллабы. Бренды Грузии и мировые компании на грузинском рынке. Органичная интеграция в контент</div>
+        </div>
+      </div>
+      <div class="item">
+        <div class="item-dot" style="background:#e8a030"></div>
+        <div>
+          <div class="item-text">Монетизация и ТВ-права</div>
+          <div class="item-sub">Архив → спонсоры → PPV → Setanta / Adjarasport</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="arrow-down">↓</div>
+</section>
+
+<!-- ═══ 3. МЕДИА-ХАБ ═══ -->
+<section id="s-hub">
+  <div class="sec-label">Медиа-хаб</div>
+
+  <div class="card a-amber">
+    <div class="card-head">
+      <div><div class="card-title">Медиа-хаб</div><div class="card-sub">продакшн · контент · дистрибуция · привлечение спонсоров</div></div>
+    </div>
+
+  </div>
+
+  <div class="arrow-down">↓</div>
+</section>
+
+<!-- ═══ 4. YOUTUBE GEORGIA ═══ -->
+<section id="s-yt">
+  <div class="sec-label">YouTube · Основной канал</div>
+
+  <div class="card a-blue">
+    <div class="card-head">
+      <div><div class="card-title">YouTube Georgia</div><div class="card-sub">локомотив · грузинский контент · субтитры RU + EN</div></div>
+      <div class="badge">GE</div>
+    </div>
+    <div class="note">
+      <div class="note-text">Сейчас канал только на грузинском. Добавляем субтитры минимум на русском и английском. По возможности — дублирующий аудиотрек. Это открывает русскоязычную диаспору и международную аудиторию без отдельного канала</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title" style="font-size:14px;margin-bottom:10px">Рубрики канала</div>
+    <div class="grid2">
+      <div class="mini"><div class="mini-title">Подкаст</div><div class="mini-sub">бойцы · гости</div></div>
+      <div class="mini"><div class="mini-title">Полные бои</div><div class="mini-sub">записи ивентов</div></div>
+      <div class="mini"><div class="mini-title">Промо ивента</div><div class="mini-sub">анонсы и прогрев</div></div>
+      <div class="mini"><div class="mini-title">Обзоры боёв</div><div class="mini-sub">внутренние события</div></div>
+      <div class="mini"><div class="mini-title">Пресс-конференция</div><div class="mini-sub">перед каждым ивентом · стейкдаун · слова бойцов</div></div>
+      <div class="mini"><div class="mini-title">Prospect / Новички</div><div class="mini-sub">отдельный формат для новых бойцов ростера</div></div>
+    </div>
+  </div>
+
+  <div class="card a-blue">
+    <div class="card-head">
+      <div><div class="card-title">Сериал «Бои в Грузии»</div><div class="card-sub">30 бойцов · история · страна · характер</div></div>
+      <div class="badge">TOP</div>
+    </div>
+    <div class="items">
+      <div class="item">
+        <div class="item-dot" style="background:#4a9ef8"></div>
+        <div>
+          <div class="item-text">Несколько бойцов в одном ролике</div>
+          <div class="item-sub">Раскрываем личности + показываем глубину страны. Снимаем в родных краях бойцов — разнообразие Грузии как часть визуала</div>
+        </div>
+      </div>
+      <div class="item">
+        <div class="item-dot" style="background:#4a9ef8"></div>
+        <div>
+          <div class="item-text">Нарезки → рилсы каждого бойца</div>
+          <div class="item-sub">Основное видео разрезается на шортс / рилсы для персональных аккаунтов</div>
+        </div>
+      </div>
+      <div class="item">
+        <div class="item-dot" style="background:#4a9ef8"></div>
+        <div>
+          <div class="item-text">Популяризация бренда GAMA</div>
+          <div class="item-sub">Культура, история, путь в бои с детства до сегодня</div>
+        </div>
+      </div>
+      <div class="item">
+        <div class="item-dot" style="background:#4a9ef8"></div>
+        <div>
+          <div class="item-text">Таймлайн съёмок</div>
+          <div class="item-sub">Привязка к датам ивентов. Серия выходит в месяц</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 5. SMM БОЙЦОВ ═══ -->
+<section id="s-smm">
+  <div class="sec-label">SMM бойцов · Полный цикл</div>
+
+  <div class="card a-pink">
+    <div class="card-head">
+      <div><div class="card-title">SMM бойцов</div><div class="card-sub">3 → 30 бойцов · полный цикл</div></div>
+      <div class="badge">SMM</div>
+    </div>
+    <div class="items">
+      <div class="item">
+        <div class="item-dot" style="background:#e050a0"></div>
+        <div><div class="item-text">Персональная стратегия каждого</div><div class="item-sub">позиционирование · тон · аудитория · платформы</div></div>
+      </div>
+      <div class="item">
+        <div class="item-dot" style="background:#e050a0"></div>
+        <div><div class="item-text">10 рилсов / мес на бойца</div><div class="item-sub">отдельные съёмки</div></div>
+      </div>
+      <div class="item">
+        <div class="item-dot" style="background:#e050a0"></div>
+        <div><div class="item-text">Нарезки из сериала</div><div class="item-sub">шортс · сторис · клипы</div></div>
+      </div>
+      <div class="item">
+        <div class="item-dot" style="background:#e050a0"></div>
+        <div><div class="item-text">Визуал · тексты · идентичность</div><div class="item-sub">единый визуальный язык на каждого</div></div>
+      </div>
+      <div class="item">
+        <div class="item-dot" style="background:#e050a0"></div>
+        <div><div class="item-text">Полное ведение соцсетей</div><div class="item-sub">Instagram · TikTok · ответы · сторис · посевы</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="phases">
+    <div class="phase ph1">
+      <div class="phase-num">ФАЗА 1 · МЕС 1–3</div>
+      <div class="phase-title">3 бойца · Пилот</div>
+      <div class="phase-sub">тест форматов · обкатка системы · первые результаты</div>
+    </div>
+    <div class="phase ph2">
+      <div class="phase-num">ФАЗА 2 · МЕС 4–6</div>
+      <div class="phase-title">10 бойцов · Масштаб</div>
+      <div class="phase-sub">расширение команды и объёмов производства</div>
+    </div>
+    <div class="phase ph3">
+      <div class="phase-num">ФАЗА 3 · МЕС 7+</div>
+      <div class="phase-title">30 бойцов · Полная мощность</div>
+      <div class="phase-sub">медиа-машина на полном ходу</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 6. ТАРГЕТ ═══ -->
+<section id="s-tgt">
+  <div class="sec-label">Таргет · Продажи билетов</div>
+
+  <div class="card a-green">
+    <div class="card-head">
+      <div><div class="card-title">Таргетированная реклама</div><div class="card-sub">Meta Ads · всегда полный зал</div></div>
+      <div class="badge">ADS</div>
+    </div>
+    <div class="items">
+      <div class="item">
+        <div class="item-dot" style="background:#50c468"></div>
+        <div><div class="item-text">За 3 нед до ивента</div><div class="item-sub">прогрев · анонс · широкий охват</div></div>
+      </div>
+      <div class="item">
+        <div class="item-dot" style="background:#50c468"></div>
+        <div><div class="item-text">За 1 нед до ивента</div><div class="item-sub">дожим · ретаргет по тёплой аудитории</div></div>
+      </div>
+      <div class="item">
+        <div class="item-dot" style="background:#50c468"></div>
+        <div><div class="item-text">Lookalike · новая аудитория</div><div class="item-sub">расширение на похожих пользователей</div></div>
+      </div>
+      <div class="item">
+        <div class="item-dot" style="background:#50c468"></div>
+        <div><div class="item-text">PPV · Билеты</div><div class="item-sub">gamafc.tv · tibox.me</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 7. YOUTUBE EN ═══ -->
+<section id="s-en">
+  <div class="sec-label">YouTube EN · Отдельный канал</div>
+
+  <div class="card a-teal">
+    <div class="card-head">
+      <div><div class="card-title">YouTube EN</div><div class="card-sub">отдельный канал · мировые обзоры · комментарии</div></div>
+      <div class="badge">EN</div>
+    </div>
+    <div class="note">
+      <div class="note-text">Отдельный самостоятельный канал на английском языке. Мировые обзоры боёв, комментарии, аналитика — не репост из GAMA, а собственный контент. Органически встраиваем продвижение GAMA через нативные интеграции</div>
+    </div>
+    <div class="items">
+      <div class="item">
+        <div class="item-dot" style="background:#30c4a0"></div>
+        <div><div class="item-text">Обзоры боёв мира</div><div class="item-sub">международный контекст · SEO · органика</div></div>
+      </div>
+      <div class="item">
+        <div class="item-dot" style="background:#30c4a0"></div>
+        <div><div class="item-text">GAMA промо нативно</div><div class="item-sub">интеграция GAMA в каждый выпуск</div></div>
+      </div>
+      <div class="item">
+        <div class="item-dot" style="background:#30c4a0"></div>
+        <div><div class="item-text">EN Shorts</div><div class="item-sub">виральный охват · ключевые моменты боёв</div></div>
+      </div>
+      <div class="item">
+        <div class="item-dot" style="background:#30c4a0"></div>
+        <div><div class="item-text">Спонсоры · ТВ-права</div><div class="item-sub">Setanta · Adjarasport · стриминговые платформы</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 8. ТАЙМЛАЙН ═══ -->
+<section id="s-tl">
+  <div class="sec-label">Таймлайн · 2026</div>
+
+  <div class="card">
+    <div class="tl-section-sub" style="margin-bottom:16px">Что запускаем и когда</div>
+
+    <div class="tl-item">
+      <div class="tl-name">SMM бойцов</div>
+      <div class="tl-bars">
+        <div class="tl-bar" style="background:#280d1a;color:#e050a0">Мес 1–3 · 3 бойца · пилот</div>
+        <div class="tl-bar" style="background:#320f22;color:#e868b0">Мес 4–6 · 10 бойцов · масштаб</div>
+        <div class="tl-bar" style="background:#3c1228;color:#f080c0">Мес 7–12 · 30 бойцов · полная мощность</div>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-name">Сериал YouTube</div>
+      <div class="tl-bars">
+        <div class="tl-bar" style="background:#0a1828;color:#4a9ef8">Мес 1–3 · пилотные серии<span>съёмка · монтаж · 3 серии</span></div>
+        <div class="tl-bar" style="background:#0c2038;color:#6ab8f8">Мес 4–12 · регулярный выпуск<span>1 серия в месяц стабильно</span></div>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-name">Таргет · ивенты</div>
+      <div class="tl-bars">
+        <div class="tl-bar" style="background:#081408;color:#50c468">Мес 1–12 · постоянно · под каждый ивент</div>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-name">YouTube EN</div>
+      <div class="tl-bars">
+        <div class="tl-bar" style="background:#051410;color:#30c4a0">Мес 7–12 · запуск · обзоры · интеграция GAMA</div>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-name">Стратегия · KPI</div>
+      <div class="tl-bars">
+        <div class="tl-bar" style="background:#0e0b06;color:#e8a030">Мес 1–12 · позиционирование · ежемесячные отчёты</div>
+      </div>
+    </div>
+
+    <div class="tl-item" style="margin-bottom:0">
+      <div class="tl-name">Подкаст + пресс-конференции</div>
+      <div class="tl-bars">
+        <div class="tl-bar" style="background:#161616;color:#888">Мес 4–12 · формат · гости · перед каждым ивентом</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 9. КОМАНДА ═══ -->
+<section id="s-team">
+  <div class="sec-label">Команда</div>
+
+  <div class="team-grid">
+    <div class="member" style="border-color:#2a1c04;background:#0c0a05">
+      <div class="member-name" style="color:#e8a030">Вова Ковпак</div>
+      <div class="member-role">продюсер · стратег</div>
+    </div>
+    <div class="member" style="border-color:#3d1020;background:#0c0507">
+      <div class="member-name" style="color:#e84060">Алан Коломец</div>
+      <div class="member-role">режиссёр · Head of Prod</div>
+    </div>
+    <div class="member" style="border-color:#160d2a;background:#08060e">
+      <div class="member-name" style="color:#a070f0">Артём Перлин</div>
+      <div class="member-role">арт-директор</div>
+    </div>
+    <div class="member" style="border-color:#280d1a;background:#0c0508">
+      <div class="member-name" style="color:#e050a0">Айрат Халилуллов</div>
+      <div class="member-role">копирайтер · сценарист</div>
+    </div>
+    <div class="member" style="border-color:#081408;background:#050c05">
+      <div class="member-name" style="color:#50c468">Таргетолог</div>
+      <div class="member-role">Meta · Google Ads</div>
+    </div>
+    <div class="member" style="border-color:#0a1828;background:#060a10">
+      <div class="member-name" style="color:#4a9ef8">Монтажёр</div>
+      <div class="member-role">сериал · нарезки</div>
+    </div>
+    <div class="member">
+      <div class="member-name">Оператор B</div>
+      <div class="member-role">доп съёмки · материалы</div>
+    </div>
+    <div class="member">
+      <div class="member-name">SMM-менеджер</div>
+      <div class="member-role">ведение аккаунтов бойцов</div>
+    </div>
+    <div class="member">
+      <div class="member-name">EN редактор</div>
+      <div class="member-role">международный канал</div>
+    </div>
+    <div class="member">
+      <div class="member-name">Аналитик</div>
+      <div class="member-role">охваты · KPI · отчёты</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 10. ПЛАТФОРМЫ ═══ -->
+<section id="s-pl">
+  <div class="sec-label">Платформы дистрибуции</div>
+
+  <div class="platform-grid">
+    <a href="https://youtube.com/@GAMAFightingChampionship" target="_blank" class="platform" style="border-color:#0a1828;background:#060a10">
+      <div class="platform-name" style="color:#4a9ef8">YouTube</div>
+      <div class="platform-url">@GAMAFighting...</div>
+    </a>
+    <a href="https://instagram.com/gama.fighting" target="_blank" class="platform">
+      <div class="platform-name">Instagram</div>
+      <div class="platform-url">@gama.fighting</div>
+    </a>
+    <a href="https://tiktok.com/@gama_page" target="_blank" class="platform">
+      <div class="platform-name">TikTok</div>
+      <div class="platform-url">@gama_page</div>
+    </a>
+    <a href="https://facebook.com/GAMAFightingChampionship" target="_blank" class="platform">
+      <div class="platform-name">Facebook</div>
+      <div class="platform-url">GAMAFighting...</div>
+    </a>
+    <a href="https://gamafc.tv" target="_blank" class="platform" style="border-color:#081e18;background:#050e0b">
+      <div class="platform-name" style="color:#30c4a0">gamafc.tv</div>
+      <div class="platform-url">PPV стриминг</div>
+    </a>
+    <a href="https://gamafc.ge" target="_blank" class="platform">
+      <div class="platform-name">gamafc.ge</div>
+      <div class="platform-url">официальный сайт</div>
+    </a>
+    <a href="https://gama.tibox.me" target="_blank" class="platform" style="border-color:#081408;background:#050c05">
+      <div class="platform-name" style="color:#50c468">Билеты</div>
+      <div class="platform-url">tibox.me</div>
+    </a>
+  </div>
+</section>
+
+
+<!-- ═══ 11. ДОПОЛНИТЕЛЬНЫЕ ПРЕДЛОЖЕНИЯ ═══ -->
+<section id="s-add">
+  <div class="sec-label">Дополнительные предложения · Старт</div>
+
+  <div class="card a-amber">
+    <div class="card-head">
+      <div><div class="card-title">На первоначальном этапе</div><div class="card-sub">что предлагаем сверх базового пакета</div></div>
+    </div>
+    <div class="items">
+      <div class="item">
+        <div class="item-dot" style="background:#e8a030"></div>
+        <div>
+          <div class="item-text">Стратегия на год</div>
+          <div class="item-sub">Полная медиа-стратегия GAMA на 12 месяцев — платформы, форматы, аудитория, цели, KPI и план масштабирования.</div>
+        </div>
+      </div>
+      <div class="item">
+        <div class="item-dot" style="background:#e8a030"></div>
+        <div>
+          <div class="item-text">Аудит текущих площадок</div>
+          <div class="item-sub">Разбор существующих каналов, аккаунтов и контента GAMA. Точки роста, слабые места, что работает</div>
+        </div>
+      </div>
+      <div class="item">
+        <div class="item-dot" style="background:#e8a030"></div>
+        <div>
+          <div class="item-text">Пресс-кит для спонсоров</div>
+          <div class="item-sub">Медиакит с охватами, аудиторией, форматами интеграций. Готовый инструмент для переговоров с брендами</div>
+        </div>
+      </div>
+      <div class="item">
+        <div class="item-dot" style="background:#e8a030"></div>
+        <div>
+          <div class="item-text">Первые 3 коллаборации с брендами</div>
+          <div class="item-sub">Находим и упаковываем первые партнёрства — грузинские бренды и международные компании на рынке Грузии</div>
+        </div>
+      </div>
+      <div class="item">
+        <div class="item-dot" style="background:#e8a030"></div>
+        <div>
+          <div class="item-text">Мерч и fan engagement</div>
+          <div class="item-sub">Концепция фан-сообщества вокруг GAMA — эксклюзивный контент, закрытый канал, мерч бойцов</div>
+        </div>
+      </div>
+      <div class="item">
+        <div class="item-dot" style="background:#e8a030"></div>
+        <div>
+          <div class="item-text">Разработка рейтинга бойцов</div>
+          <div class="item-sub">Публичный рейтинг по весовым категориям — создаёт нарратив, интригу и повод для контента между ивентами</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<nav>
+  <a href="#s-dir">
+    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M2 12h4M18 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
+    Форматы
+  </a>
+  <a href="#s-yt">
+    <svg viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="3"/><polygon points="10,9 16,12 10,15"/></svg>
+    YouTube
+  </a>
+  <a href="#s-smm">
+    <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+    Бойцы
+  </a>
+  <a href="#s-tl">
+    <svg viewBox="0 0 24 24"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg>
+    Таймлайн
+  </a>
+  <a href="#s-team">
+    <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+    Команда
+  </a>
+</nav>
+
+</body>
+</html>
